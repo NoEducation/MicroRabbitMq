@@ -5,10 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroRabbitMq.Banking.Application\MicroRabbitMq.Banking.Application.csproj" />
+    <ProjectReference Include="..\MicroRabbitMq.Banking.Data\MicroRabbitMq.Banking.Data.csproj" />
     <ProjectReference Include="..\MicroRabbitMq.Domain.Core\MicroRabbitMq.Domain.Core.csproj" />
     <ProjectReference Include="..\MicroRabbitMq.Infrastructure.Bus\MicroRabbitMq.Infrastructure.Bus.csproj" />
   </ItemGroup>

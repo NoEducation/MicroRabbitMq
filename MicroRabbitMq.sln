@@ -30,6 +30,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{22B243AB-D209-42F3-BB14-1177550E0FB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbitMq.Banking.Api", "MicroRabbitMq.Banking.Api\MicroRabbitMq.Banking.Api.csproj", "{B4D1E64C-BDA6-47BB-BDBF-D86D718E951B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7D7ADF8B-CC9D-45B1-A624-2708AF5EB939} = {7D7ADF8B-CC9D-45B1-A624-2708AF5EB939}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbitMq.Banking.Application", "MicroRabbitMq.Banking.Application\MicroRabbitMq.Banking.Application.csproj", "{3D081B5B-728C-42C6-A75C-84308C974771}"
 EndProject
