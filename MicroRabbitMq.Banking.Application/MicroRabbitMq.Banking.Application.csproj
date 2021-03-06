@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MicroRabbitMq.Banking.Domain\MicroRabbitMq.Banking.Domain.csproj" />
+    <ProjectReference Include="..\MicroRabbitMq.Transfer.Application\MicroRabbitMq.Transfer.Application.csproj" />
   </ItemGroup>
 
 </Project>

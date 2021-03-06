@@ -1,10 +1,10 @@
 ﻿using MicroRabbitMq.Banking.Application.Interfaces;
-using MicroRabbitMq.Banking.Domain.Interfaces;
-using MicroRabbitMq.Banking.Domain.Models;
-using System.Collections.Generic;
 using MicroRabbitMq.Banking.Application.Models;
 using MicroRabbitMq.Banking.Domain.Commands;
+using MicroRabbitMq.Banking.Domain.Interfaces;
+using MicroRabbitMq.Banking.Domain.Models;
 using MicroRabbitMq.Domain.Core.Bus;
+using System.Collections.Generic;
 
 namespace MicroRabbitMq.Banking.Application.Services
 {

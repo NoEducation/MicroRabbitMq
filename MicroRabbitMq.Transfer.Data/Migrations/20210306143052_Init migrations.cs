@@ -1,30 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MicroRabbitMq.Banking.Api.Migrations
+namespace MicroRabbitMq.Transfer.Data.Migrations
 {
     public partial class Initmigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
+                name: "TransferLogs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AccountBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    FromAccount = table.Column<int>(type: "int", nullable: false),
+                    ToAccount = table.Column<int>(type: "int", nullable: false),
+                    TransferAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                    table.PrimaryKey("PK_TransferLogs", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "TransferLogs");
         }
     }
 }
