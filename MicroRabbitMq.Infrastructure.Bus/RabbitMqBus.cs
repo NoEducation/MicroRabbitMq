@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -16,12 +17,15 @@ namespace MicroRabbitMq.Infrastructure.Bus
     public class RabbitMqBus : IEventBus
     {
         private readonly IMediator _mediator;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly Dictionary<string, List<Type>> _handlers;
         private readonly List<Type> _eventTypes;
 
-        public RabbitMqBus(IMediator mediator)
+        public RabbitMqBus(IMediator mediator,
+            IServiceScopeFactory serviceScopeFactory)
         {
             _mediator = mediator;
+            _serviceScopeFactory = serviceScopeFactory;
             _handlers = new Dictionary<string, List<Type>>();
             _eventTypes = new List<Type>();
         }
@@ -115,10 +119,11 @@ namespace MicroRabbitMq.Infrastructure.Bus
         {
             if (_handlers.ContainsKey(eventName))
             {
+                using var scope = this._serviceScopeFactory.CreateScope();
                 var subscriptions = _handlers[eventName];
                 foreach (var subscription in subscriptions)
                 {
-                    var handler = Activator.CreateInstance(subscription);
+                    var handler = scope.ServiceProvider.GetService(subscription) ;
                     if(handler is null) continue;
                     var eventType = _eventTypes.Single(t => t.Name == eventName);
                     var @event = JsonConvert.DeserializeObject(message, eventType);

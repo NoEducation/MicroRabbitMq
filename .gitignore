@@ -12,7 +12,9 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+ArchitectureProject.ClientApp/dist/assets/
+#
+appsettings.Production.json
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

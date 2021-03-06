@@ -1,5 +1,5 @@
-﻿using MicroRabbitMq.Banking.Domain.Interfaces;
-using MicroRabbitMq.Transfer.Data.Context;
+﻿using MicroRabbitMq.Transfer.Data.Context;
+using MicroRabbitMq.Transfer.Domain.Interfaces;
 using MicroRabbitMq.Transfer.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,12 @@ namespace MicroRabbitMq.Transfer.Data.Repository
         public IEnumerable<TransferLog> GetTransferLogs()
         {
             return _context.TransferLogs.ToList();
+        }
+
+        public void AddTransfer(TransferLog target)
+        {
+            this._context.Add<TransferLog>(target);
+            this._context.SaveChanges();
         }
     }
 }

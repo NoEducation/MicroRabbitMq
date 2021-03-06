@@ -1,6 +1,6 @@
-﻿using MicroRabbitMq.Banking.Domain.Interfaces;
-using MicroRabbitMq.Domain.Core.Bus;
+﻿using MicroRabbitMq.Domain.Core.Bus;
 using MicroRabbitMq.Transfer.Application.Interfaces;
+using MicroRabbitMq.Transfer.Domain.Interfaces;
 using MicroRabbitMq.Transfer.Domain.Models;
 using System.Collections.Generic;
 

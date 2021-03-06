@@ -14,6 +14,7 @@ using MicroRabbitMq.Transfer.Data.Context;
 using MicroRabbitMq.Transfer.Data.Repository;
 using MicroRabbitMq.Transfer.Domain.EventHandlers;
 using MicroRabbitMq.Transfer.Domain.Events;
+using MicroRabbitMq.Transfer.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MicroRabbitMq.Infrastructure.IoC
@@ -22,7 +23,11 @@ namespace MicroRabbitMq.Infrastructure.IoC
     {
         public static void RegisterCommonServices(IServiceCollection services)
         {
-            services.AddTransient<IEventBus, RabbitMqBus>();
+            services.AddSingleton<IEventBus, RabbitMqBus>(sp =>
+            {
+                var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+                return new RabbitMqBus(sp.GetService<IMediator>(),scopeFactory);
+            });
         }
 
         public static void RegisterTransferServices(IServiceCollection services)
@@ -31,6 +36,7 @@ namespace MicroRabbitMq.Infrastructure.IoC
             services.AddTransient<ITransferRepository, TransferRepository>();
             services.AddTransient<TransferDbContext>();
             services.AddTransient<IEventHandler<TransferCreatedEvent>, TransferEventHandler>();
+            services.AddTransient<TransferEventHandler>();
         }
 
         public static void RegisterBankingServices(IServiceCollection services)
