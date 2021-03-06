@@ -38,6 +38,7 @@ namespace MicroRabbitMq.Infrastructure.IoC
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<BankingDbContext>();
+            services.AddTransient<IRequestHandler<CreateTransferCommand, bool>, CreateTransferCommandHandler>();
         }
 
     }
